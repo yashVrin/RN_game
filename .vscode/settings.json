@@ -1,0 +1,12 @@
+{
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.import.exclusions": [
+        "**/node_modules/**",
+        "**/ios/**"
+    ],
+    "java.import.generatesMetadataFilesAtProjectRoot": false,
+    "files.exclude": {
+        "**/node_modules/": false
+    }
+}
