@@ -30,7 +30,7 @@ export default function HomeScreen({
         <Text style={styles.arcadeBadge}>RETRO ARCADE</Text>
         <Text style={styles.arcadeTitle}>GAME ZONE</Text>
         <Text style={styles.arcadeSubtitle}>
-          Select a classic arcade game to play offline!
+          Select a classic arcade game to play!
         </Text>
       </View>
 
@@ -142,10 +142,6 @@ export default function HomeScreen({
           </View>
         </View>
       </Pressable>
-
-      <Text style={styles.offlineNotice}>
-        🔒 100% Offline • No Network Required
-      </Text>
     </ScrollView>
   );
 }
@@ -344,11 +340,5 @@ const styles = StyleSheet.create({
     fontWeight: "900",
     fontSize: 12,
     letterSpacing: 1,
-  },
-
-  offlineNotice: {
-    color: "#5A657D",
-    fontSize: 12,
-    marginTop: 10,
   },
 });
