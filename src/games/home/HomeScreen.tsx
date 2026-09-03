@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Pressable,
   ScrollView,
@@ -6,6 +6,8 @@ import {
   Text,
   View,
 } from "react-native";
+import { ProfileModal } from "../../components/ProfileModal";
+import { getUserProfile, UserProfile } from "../../services/storageService";
 import { styles } from "./Styles";
 
 interface HomeScreenProps {
@@ -14,6 +16,7 @@ interface HomeScreenProps {
   onSelectTicTacToe: () => void;
   onSelectBlockDrop: () => void;
   onSelectChess: () => void;
+  onSelectDhaglaBaji: () => void;
 }
 
 export default function HomeScreen({
@@ -22,13 +25,38 @@ export default function HomeScreen({
   onSelectTicTacToe,
   onSelectBlockDrop,
   onSelectChess,
+  onSelectDhaglaBaji,
 }: HomeScreenProps): React.JSX.Element {
+  const [profileModalVisible, setProfileModalVisible] = useState<boolean>(false);
+  const [userProfile, setUserProfile] = useState<UserProfile>({
+    nickname: "Player 1",
+    avatar: "👑",
+  });
+
+  useEffect(() => {
+    getUserProfile().then((p) => setUserProfile(p));
+  }, []);
+
   return (
     <ScrollView
       style={styles.scrollScreen}
       contentContainerStyle={styles.homeContent}
       showsVerticalScrollIndicator={false}
     >
+      {/* Top Profile Header Bar */}
+      <View style={styles.profileTopBar}>
+        <Pressable
+          style={styles.profileButton}
+          onPress={() => setProfileModalVisible(true)}
+        >
+          <Text style={styles.profileAvatar}>{userProfile.avatar}</Text>
+          <Text style={styles.profileName} numberOfLines={1}>
+            {userProfile.nickname}
+          </Text>
+          <Text style={styles.profileEditIcon}>✏️</Text>
+        </Pressable>
+      </View>
+
       <View style={styles.arcadeHeader}>
         <Text style={styles.arcadeBadge}>RETRO ARCADE</Text>
         <Text style={styles.arcadeTitle}>GAME ZONE</Text>
@@ -36,6 +64,33 @@ export default function HomeScreen({
           Select a classic arcade game to play!
         </Text>
       </View>
+
+      {/* Dhagla Baji Game Selection Card */}
+      <Pressable
+        style={[styles.gameCard, styles.dhaglaBajiCardBorder]}
+        onPress={onSelectDhaglaBaji}
+      >
+        <View style={styles.gameCardHeader}>
+          <Text style={styles.gameCardIcon}>🃏👑</Text>
+          <View style={[styles.gameCardTagContainer, styles.dhaglaBajiTagBg]}>
+            <Text style={styles.dhaglaBajiTagText}>ઢગલાબાજી • TRADITIONAL</Text>
+          </View>
+        </View>
+
+        <Text style={styles.gameCardTitle}>DHAGLA BAJI (ઢગલાબાજી)</Text>
+        <Text style={styles.gameCardDesc}>
+          Traditional Gujarati card battle! Capture the center Dhagla with consecutive round wins and collect the Tens. Play multiplayer over Hotspot without internet (2 to 4 players)!
+        </Text>
+
+        <View style={styles.gameCardFooter}>
+          <Text style={styles.gameCardFeature}>
+            🔥 2-4 Players • Offline Hotspot • Real Cards • No Internet
+          </Text>
+          <View style={[styles.playBadge, styles.dhaglaBajiPlayBadge]}>
+            <Text style={styles.dhaglaBajiPlayText}>PLAY ▶</Text>
+          </View>
+        </View>
+      </Pressable>
 
       {/* Maze Game Selection Card */}
       <Pressable style={styles.gameCard} onPress={onSelectMaze}>
@@ -172,6 +227,13 @@ export default function HomeScreen({
           </View>
         </View>
       </Pressable>
+
+      {/* User Profile Customization Modal */}
+      <ProfileModal
+        visible={profileModalVisible}
+        onClose={() => setProfileModalVisible(false)}
+        onProfileUpdated={(updated) => setUserProfile(updated)}
+      />
     </ScrollView>
   );
 }

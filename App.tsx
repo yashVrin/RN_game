@@ -6,6 +6,7 @@ import HomeScreen from "./src/games/home/HomeScreen";
 import BlockDropGame from "./src/games/blockdrop/BlockDropGame";
 import ChessGame from "./src/games/chess/ChessGame";
 import MazeGame from "./src/games/maze/MazeGame";
+import DhaglaBajiGame from "./src/games/dhaglabaji/DhaglaBajiGame";
 import SnakeGame from "./src/games/snake/SnakeGame";
 import TicTacToeGame from "./src/games/tictactoe/TicTacToeGame";
 
@@ -15,7 +16,8 @@ type ActiveView =
   | "SNAKE"
   | "TICTACTOE"
   | "BLOCKDROP"
-  | "CHESS";
+  | "CHESS"
+  | "DHAGLABAJI";
 
 export default function App(): React.JSX.Element {
   const [activeView, setActiveView] = useState<ActiveView>("HOME");
@@ -50,7 +52,12 @@ export default function App(): React.JSX.Element {
             onSelectTicTacToe={() => setActiveView("TICTACTOE")}
             onSelectBlockDrop={() => setActiveView("BLOCKDROP")}
             onSelectChess={() => setActiveView("CHESS")}
+            onSelectDhaglaBaji={() => setActiveView("DHAGLABAJI")}
           />
+        )}
+
+        {activeView === "DHAGLABAJI" && (
+          <DhaglaBajiGame onBackToHome={() => setActiveView("HOME")} />
         )}
 
         {activeView === "MAZE" && (

@@ -12,9 +12,46 @@ export const styles = StyleSheet.create({
     },
 
     arcadeHeader: {
+        width: "100%",
+        maxWidth: 340,
         alignItems: "center",
-        marginTop: 20,
-        marginBottom: 24,
+        marginTop: 10,
+        marginBottom: 20,
+    },
+
+    profileTopBar: {
+        width: "100%",
+        maxWidth: 340,
+        flexDirection: "row",
+        justifyContent: "flex-end",
+        marginBottom: 10,
+    },
+
+    profileButton: {
+        flexDirection: "row",
+        alignItems: "center",
+        backgroundColor: "rgba(56, 189, 248, 0.15)",
+        borderWidth: 1.5,
+        borderColor: "#38BDF8",
+        paddingHorizontal: 12,
+        paddingVertical: 6,
+        borderRadius: 20,
+        gap: 6,
+    },
+
+    profileAvatar: {
+        fontSize: 18,
+    },
+
+    profileName: {
+        color: "#F0F9FF",
+        fontSize: 13,
+        fontWeight: "800",
+        maxWidth: 110,
+    },
+
+    profileEditIcon: {
+        fontSize: 12,
     },
 
     arcadeBadge: {
@@ -217,6 +254,32 @@ export const styles = StyleSheet.create({
 
     chessPlayText: {
         color: "#18062B",
+        fontWeight: "900",
+        fontSize: 12,
+        letterSpacing: 1,
+    },
+
+    dhaglaBajiCardBorder: {
+        borderColor: "#10B98166",
+    },
+
+    dhaglaBajiTagBg: {
+        backgroundColor: "#10B98122",
+    },
+
+    dhaglaBajiTagText: {
+        color: "#34D399",
+        fontSize: 11,
+        fontWeight: "900",
+        letterSpacing: 0.5,
+    },
+
+    dhaglaBajiPlayBadge: {
+        backgroundColor: "#10B981",
+    },
+
+    dhaglaBajiPlayText: {
+        color: "#022C1A",
         fontWeight: "900",
         fontSize: 12,
         letterSpacing: 1,
