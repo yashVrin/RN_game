@@ -4,11 +4,18 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import SplashScreen from "react-native-splash-screen";
 import HomeScreen from "./src/games/home/HomeScreen";
 import BlockDropGame from "./src/games/blockdrop/BlockDropGame";
+import ChessGame from "./src/games/chess/ChessGame";
 import MazeGame from "./src/games/maze/MazeGame";
 import SnakeGame from "./src/games/snake/SnakeGame";
 import TicTacToeGame from "./src/games/tictactoe/TicTacToeGame";
 
-type ActiveView = "HOME" | "MAZE" | "SNAKE" | "TICTACTOE" | "BLOCKDROP";
+type ActiveView =
+  | "HOME"
+  | "MAZE"
+  | "SNAKE"
+  | "TICTACTOE"
+  | "BLOCKDROP"
+  | "CHESS";
 
 export default function App(): React.JSX.Element {
   const [activeView, setActiveView] = useState<ActiveView>("HOME");
@@ -42,6 +49,7 @@ export default function App(): React.JSX.Element {
             onSelectSnake={() => setActiveView("SNAKE")}
             onSelectTicTacToe={() => setActiveView("TICTACTOE")}
             onSelectBlockDrop={() => setActiveView("BLOCKDROP")}
+            onSelectChess={() => setActiveView("CHESS")}
           />
         )}
 
@@ -59,6 +67,10 @@ export default function App(): React.JSX.Element {
 
         {activeView === "BLOCKDROP" && (
           <BlockDropGame onBackToHome={() => setActiveView("HOME")} />
+        )}
+
+        {activeView === "CHESS" && (
+          <ChessGame onBackToHome={() => setActiveView("HOME")} />
         )}
       </SafeAreaView>
     </SafeAreaProvider>

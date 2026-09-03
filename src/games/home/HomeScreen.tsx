@@ -6,12 +6,14 @@ import {
   Text,
   View,
 } from "react-native";
+import { styles } from "./Styles";
 
 interface HomeScreenProps {
   onSelectMaze: () => void;
   onSelectSnake: () => void;
   onSelectTicTacToe: () => void;
   onSelectBlockDrop: () => void;
+  onSelectChess: () => void;
 }
 
 export default function HomeScreen({
@@ -19,6 +21,7 @@ export default function HomeScreen({
   onSelectSnake,
   onSelectTicTacToe,
   onSelectBlockDrop,
+  onSelectChess,
 }: HomeScreenProps): React.JSX.Element {
   return (
     <ScrollView
@@ -142,203 +145,35 @@ export default function HomeScreen({
           </View>
         </View>
       </Pressable>
+
+      {/* Chess Game Selection Card */}
+      <Pressable
+        style={[styles.gameCard, styles.chessCardBorder]}
+        onPress={onSelectChess}
+      >
+        <View style={styles.gameCardHeader}>
+          <Text style={styles.gameCardIcon}>♟️👑</Text>
+          <View style={[styles.gameCardTagContainer, styles.chessTagBg]}>
+            <Text style={styles.chessTagText}>2P & VS AI</Text>
+          </View>
+        </View>
+
+        <Text style={styles.gameCardTitle}>CHESS ARENA</Text>
+        <Text style={styles.gameCardDesc}>
+          Classic tactical showdown. Challenge a friend locally or test your skills against the smart Computer AI!
+        </Text>
+
+        <View style={styles.gameCardFooter}>
+          <Text style={styles.gameCardFeature}>
+            🧠 2 Players • Smart AI • Move Hints • Undo
+          </Text>
+          <View style={[styles.playBadge, styles.chessPlayBadge]}>
+            <Text style={styles.chessPlayText}>PLAY ▶</Text>
+          </View>
+        </View>
+      </Pressable>
     </ScrollView>
   );
 }
 
-const styles = StyleSheet.create({
-  scrollScreen: {
-    flex: 1,
-  },
 
-  homeContent: {
-    padding: 20,
-    alignItems: "center",
-    paddingBottom: 40,
-  },
-
-  arcadeHeader: {
-    alignItems: "center",
-    marginTop: 20,
-    marginBottom: 24,
-  },
-
-  arcadeBadge: {
-    color: "#49D17D",
-    fontSize: 12,
-    fontWeight: "900",
-    letterSpacing: 2,
-    marginBottom: 4,
-  },
-
-  arcadeTitle: {
-    color: "#FFFFFF",
-    fontSize: 38,
-    fontWeight: "900",
-    letterSpacing: 3,
-  },
-
-  arcadeSubtitle: {
-    color: "#8E99B0",
-    fontSize: 14,
-    marginTop: 6,
-    textAlign: "center",
-  },
-
-  gameCard: {
-    width: "100%",
-    maxWidth: 340,
-    backgroundColor: "#151C2E",
-    borderWidth: 1,
-    borderColor: "#253046",
-    borderRadius: 18,
-    padding: 18,
-    marginBottom: 20,
-  },
-
-  snakeCardBorder: {
-    borderColor: "#00E5FF33",
-  },
-
-  gameCardHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-
-  gameCardIcon: {
-    fontSize: 34,
-  },
-
-  gameCardTagContainer: {
-    backgroundColor: "#49D17D22",
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 8,
-  },
-
-  gameCardTag: {
-    color: "#49D17D",
-    fontSize: 11,
-    fontWeight: "900",
-    letterSpacing: 1,
-  },
-
-  snakeTagBg: {
-    backgroundColor: "#00E5FF22",
-  },
-
-  snakeTagText: {
-    color: "#00E5FF",
-    fontSize: 11,
-    fontWeight: "900",
-    letterSpacing: 1,
-  },
-
-  gameCardTitle: {
-    color: "#FFFFFF",
-    fontSize: 22,
-    fontWeight: "900",
-    marginTop: 12,
-  },
-
-  gameCardDesc: {
-    color: "#9AA4B8",
-    fontSize: 13,
-    lineHeight: 19,
-    marginTop: 6,
-  },
-
-  gameCardFooter: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginTop: 16,
-    paddingTop: 12,
-    borderTopWidth: 1,
-    borderTopColor: "#202A3E",
-  },
-
-  gameCardFeature: {
-    color: "#6D7992",
-    fontSize: 11,
-    flex: 1,
-  },
-
-  playBadge: {
-    backgroundColor: "#49D17D",
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-    borderRadius: 10,
-  },
-
-  playBadgeText: {
-    color: "#08130C",
-    fontWeight: "900",
-    fontSize: 12,
-    letterSpacing: 1,
-  },
-
-  snakePlayBadge: {
-    backgroundColor: "#00E5FF",
-  },
-
-  snakePlayText: {
-    color: "#002733",
-    fontWeight: "900",
-    fontSize: 12,
-    letterSpacing: 1,
-  },
-
-  ticTacToeCardBorder: {
-    borderColor: "#FFB74D33",
-  },
-
-  ticTacToeTagBg: {
-    backgroundColor: "#FFB74D22",
-  },
-
-  ticTacToeTagText: {
-    color: "#FFB74D",
-    fontSize: 11,
-    fontWeight: "900",
-    letterSpacing: 1,
-  },
-
-  ticTacToePlayBadge: {
-    backgroundColor: "#FFB74D",
-  },
-
-  ticTacToePlayText: {
-    color: "#2A1600",
-    fontWeight: "900",
-    fontSize: 12,
-    letterSpacing: 1,
-  },
-
-  blockDropCardBorder: {
-    borderColor: "#FF704D33",
-  },
-
-  blockDropTagBg: {
-    backgroundColor: "#FF704D22",
-  },
-
-  blockDropTagText: {
-    color: "#FF704D",
-    fontSize: 11,
-    fontWeight: "900",
-    letterSpacing: 1,
-  },
-
-  blockDropPlayBadge: {
-    backgroundColor: "#FF704D",
-  },
-
-  blockDropPlayText: {
-    color: "#2A1208",
-    fontWeight: "900",
-    fontSize: 12,
-    letterSpacing: 1,
-  },
-});
