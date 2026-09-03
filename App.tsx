@@ -14,11 +14,15 @@ export default function App(): React.JSX.Element {
   const [activeView, setActiveView] = useState<ActiveView>("HOME");
 
   useEffect(() => {
-    try {
-      SplashScreen.hide();
-    } catch {
-      // Ignored if native splash screen is not present
-    }
+    const splashTimer = setTimeout(() => {
+      try {
+        SplashScreen.hide();
+      } catch {
+        // Ignored if native splash screen is not present
+      }
+    }, 1800);
+
+    return () => clearTimeout(splashTimer);
   }, []);
 
   return (
